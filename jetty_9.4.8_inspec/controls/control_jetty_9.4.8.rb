@@ -26,4 +26,14 @@ control 'jetty-01' do
   describe port(8080) do
   it { should be_listening }
 end
-  end
+end
+
+control 'jetty-02' do
+  impact 1.0
+  title 'it should be lnstalled'
+  desc 'it should be installed'
+  describe command('java') do
+  it { should exist }
+end
+end
+
