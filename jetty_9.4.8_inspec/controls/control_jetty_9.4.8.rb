@@ -36,8 +36,8 @@ end
 
 control 'jetty-02' do
   impact 1.0
-  title 'it should be lnstalled'
-  desc  'it should be installed'
+  title 'checking java installed or not'
+  desc  'checking java installed or not'
   describe command('java') do
       it { should exist }
   end
@@ -62,8 +62,14 @@ control 'jetty-03' do
   end
 end
 
-=begin
+
 control 'jetty-04' do
   impact 1.0
+  title 'checking user properties'
+  desc  'checking user properties'
+  describe user('sarath') do
+  it { should exist }
+  its('uid') { should eq "S-1-5-21-2966577821-4268542272-750097892-1001"}
+  its('groups') { should eq ["ORA_DBA", "Administrators", "Performance Log Users"]}
+  end
 end
-=end
