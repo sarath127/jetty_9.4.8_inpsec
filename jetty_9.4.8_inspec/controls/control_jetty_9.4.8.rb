@@ -85,8 +85,26 @@ control 'jetty-05' do
   desc  'checking jetty configuration'
   describe file('C:\Program Files\Java\jetty\etc\jetty.xml') do
     it { should exist }
+    it { should be_file }
   end
   describe file('C:\Program Files\Java\jetty\start.ini') do
     it { should exist }
+  end
+end
+
+control 'jetty-06'do
+  impact 1.0
+  title 'checking user permissions'
+  desc  'checking user permissions'
+  describe directory('C:/Program Files/Java/jetty') do
+    # verifies specific users
+    it { should be_owned_by 'FLASH\sarath' }
+    it { should be_readable.by_user('FLASH\sarath') }
+    it { should be_writable.by_user('FLASH\sarath') }
+
+    # only applicable to unix group system
+    # it { should be_readable.by('owner') }
+    # it { should be_readable.by('group') }
+    # it { should be_readable.by('others') }
   end
 end
