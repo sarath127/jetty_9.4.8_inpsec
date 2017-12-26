@@ -68,8 +68,8 @@ control 'jetty-04' do
   title 'checking user properties'
   desc  'checking user properties'
   describe user('sarath') do
-  it { should exist }
-  its('uid') { should eq "S-1-5-21-2966577821-4268542272-750097892-1001"}
-  its('groups') { should eq ["ORA_DBA", "Administrators", "Performance Log Users"]}
+      it { should exist }
+      its('uid') { should eq "S-1-5-21-2966577821-4268542272-750097892-1001"}
+      its('groups') { should eq ["ORA_DBA", "Administrators", "Performance Log Users"]}
   end
 end
