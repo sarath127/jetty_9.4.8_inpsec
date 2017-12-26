@@ -21,6 +21,23 @@ title 'Jetty server config'
 
 control 'jetty-01' do
   impact 1.0
+  title 'checking java installed or not'
+  desc  'checking java installed or not'
+  describe command('java') do
+      it { should exist }
+  end
+  describe processes('java.exe') do
+      it { should exist }
+  end
+  describe service('jetty') do
+      it { should be_installed }
+      it { should be_enabled }
+  end
+end
+
+
+control 'jetty-02' do
+  impact 1.0
   title 'it should be listening'
   desc  'it should be listening'
   describe port(8080) do
@@ -30,19 +47,6 @@ control 'jetty-01' do
       it { should be_reachable }
       it { should be_resolvable }
       its('ipaddress') { should include '127.0.0.1' }
-  end
-end
-
-
-control 'jetty-02' do
-  impact 1.0
-  title 'checking java installed or not'
-  desc  'checking java installed or not'
-  describe command('java') do
-      it { should exist }
-  end
-  describe processes('java.exe') do
-      it { should exist }
   end
 end
 
