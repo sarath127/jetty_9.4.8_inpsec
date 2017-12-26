@@ -77,3 +77,16 @@ control 'jetty-04' do
       its('groups') { should eq ["ORA_DBA", "Administrators", "Performance Log Users"]}
   end
 end
+
+
+control 'jetty-05' do
+  impact 1.0
+  title 'checking jetty configuration'
+  desc  'checking jetty configuration'
+  describe file('C:\Program Files\Java\jetty\etc\jetty.xml') do
+    it { should exist }
+  end
+  describe file('C:\Program Files\Java\jetty\start.ini') do
+    it { should exist }
+  end
+end
